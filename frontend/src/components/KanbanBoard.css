@@ -1,0 +1,267 @@
+/* frontend/src/components/KanbanBoard.css */
+
+/* Main board container - uses horizontal scrolling */
+.kanban-board-container {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px;
+  /* Adjust height based on header, assuming header is ~40px + top bar ~40px */
+  height: calc(100vh - 90px);
+  align-items: flex-start; /* Align columns to the top */
+}
+
+/* Individual column styling */
+.kanban-column {
+  background-color: #ebecf0; /* Trello's light column color */
+  border-radius: 8px; /* More rounded corners */
+  width: 272px; /* Standard Trello column width */
+  margin-right: 8px; /* Space between columns */
+  padding: 8px;
+  flex-shrink: 0; /* Prevent columns from shrinking */
+  display: flex;
+  flex-direction: column;
+  max-height: 100%; /* Prevent column from exceeding board height */
+}
+
+/* Column title styling */
+.kanban-column h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #172b4d;
+  padding: 6px 8px;
+  margin: 0 0 8px 0;
+}
+
+/* Container for the task cards within a column */
+.column-cards {
+  overflow-y: auto; /* Enable vertical scrolling within column */
+  flex-grow: 1; /* Allow card list to fill available space */
+  min-height: 10px; /* Prevent collapsing when empty */
+  padding: 0 4px; /* Slight horizontal padding for cards */
+  /* Custom scrollbar (optional, webkit only) */
+  scrollbar-width: thin;
+  scrollbar-color: #c4c9d4 #ebecf0;
+}
+.column-cards::-webkit-scrollbar {
+  width: 8px;
+}
+.column-cards::-webkit-scrollbar-track {
+  background: #ebecf0;
+  border-radius: 4px;
+}
+.column-cards::-webkit-scrollbar-thumb {
+  background-color: #c4c9d4;
+  border-radius: 4px;
+}
+.column-cards::-webkit-scrollbar-thumb:hover {
+  background-color: #a6c5e2;
+}
+
+
+/* --- Task Card Styles --- */
+.task-card {
+  background-color: #ffffff;
+  color: #172b4d;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);
+  border: none;
+  padding: 10px 12px; /* Adjusted padding */
+  margin: 0 4px 8px 4px; /* Added horizontal margin */
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.1s, box-shadow 0.1s;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: visible; /* Ensure actions aren't clipped */
+}
+
+/* Card hover effect */
+.task-card:hover {
+  background-color: #f7f8f9;
+}
+
+.task-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  word-wrap: break-word;
+  position: relative; /* Needed for z-index */
+  z-index: 1; /* Keep text below actions */
+}
+
+/* Action buttons container (top right, appears on hover) */
+.task-actions {
+  position: absolute;
+  top: 6px;   /* Adjusted vertical position */
+  right: 6px; /* Adjusted horizontal position */
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  z-index: 10;
+  pointer-events: none;
+  background-color: rgba(247, 248, 249, 0.9); /* Lighter background for visibility */
+  border-radius: 4px; /* Rounded corners for the group */
+  padding: 2px; /* Small padding around buttons */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.task-card:hover .task-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Individual action button styling */
+.task-action-button {
+  background: transparent; /* No background by default */
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Icon size */
+  padding: 4px;
+  color: #44546f; /* Default icon color */
+  border-radius: 3px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+.task-action-button svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
+
+.task-action-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Subtle hover background */
+  color: #172b4d; /* Darker icon color on hover */
+}
+
+
+/* Styling for the "Add a card" button and form */
+.add-task-btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #5e6c84;
+  cursor: pointer;
+  padding: 8px;
+  text-align: left;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 14px;
+  transition: background-color 0.1s, color 0.1s;
+}
+.add-task-btn:hover {
+  background-color: #dadce0;
+  color: #172b4d;
+}
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.task-input {
+  width: 100%;
+  min-height: 54px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 0 0px #4c9aff;
+  background-color: white;
+  resize: vertical;
+  font-size: 14px;
+  line-height: 20px;
+  transition: box-shadow 0.2s;
+}
+.task-input:focus {
+  outline: none;
+  box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 0 2px #4c9aff;
+}
+
+.form-controls {
+  display: flex;
+  align-items: center;
+}
+
+.submit-btn {
+  background-color: #0c66e4;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.1s;
+}
+.submit-btn:hover {
+  background-color: #0055cc;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #6b778c;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 0 4px;
+  transition: color 0.1s;
+}
+.cancel-btn:hover {
+  color: #172b4d;
+}
+
+@media (max-width: 768px) {
+  .kanban-board-container {
+    /* Stack columns vertically instead of horizontally */
+    flex-direction: column;
+    /* Allow vertical scrolling for the whole board */
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Align columns to the center horizontally */
+    align-items: center;
+    /* Reduce padding on smaller screens */
+    padding: 10px;
+    /* Adjust height based on header height (assuming header is ~40px + top bar ~40px) */
+    /* You might need to adjust this if your header changes height */
+    height: calc(100vh - 90px);
+  }
+
+  .kanban-column {
+    /* Make columns take up most of the screen width */
+    width: 95%;
+    /* Set a max-width to prevent them becoming too wide on tablets */
+    max-width: 400px;
+    /* Remove horizontal margin */
+    margin-right: 0;
+    /* Add vertical margin between stacked columns */
+    margin-bottom: 15px;
+    /* Prevent columns from shrinking if content is small */
+    flex-shrink: 0;
+  }
+
+  /* Ensure card list still scrolls vertically if needed */
+  .column-cards {
+    max-height: calc(100vh - 200px); /* Adjust max height if needed */
+  }
+}
+
+/* Optional: Further adjustments for very small screens */
+@media (max-width: 480px) {
+  .kanban-column {
+    width: 100%; /* Use full width on very small screens */
+  }
+
+  /* Adjust padding/margins on small elements if needed */
+  .task-card {
+    padding: 8px 10px;
+  }
+}

@@ -1,0 +1,111 @@
+.home-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home-header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* Header text white */
+}
+
+/* Trello-like button styling */
+.create-project-btn {
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.3); /* Transparent white */
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.create-project-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.no-projects-message {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8); /* Lighter white */
+  margin-top: 40px;
+}
+
+/* Grid layout for project "boards" */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 15px;
+}
+
+.project-board-card {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white cards */
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 80px; /* Give cards some height */
+  position: relative;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, box-shadow 0.2s;
+  display: flex; /* Use flexbox for link content */
+  flex-direction: column; /* Stack content vertically */
+}
+
+.project-board-card:hover {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.project-link {
+  text-decoration: none;
+  color: #172b4d; /* Dark text for card content */
+  flex-grow: 1; /* Make link fill card */
+  display: block;
+}
+
+.project-link h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  word-wrap: break-word; /* Wrap long titles */
+}
+
+/* Action buttons container */
+.project-actions {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  gap: 4px;
+  opacity: 0; /* Hide by default */
+  transition: opacity 0.2s;
+}
+
+.project-board-card:hover .project-actions {
+  opacity: 1; /* Show on hover */
+}
+
+/* Individual action button */
+.project-action-btn {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  font-size: 14px;
+  color: #44546f;
+  padding: 4px;
+  border-radius: 3px;
+  line-height: 1;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.project-action-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #172b4d;
+}

@@ -1,0 +1,168 @@
+/* Overlay for the modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out; /* Keep fade-in */
+}
+
+/* Main modal content box */
+.modal-content {
+  background: #f4f5f7; /* Light gray background */
+  padding: 16px 24px 24px; /* Adjust padding */
+  border-radius: 3px;
+  width: 90%;
+  max-width: 550px; /* Adjust max width as needed */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative; /* For positioning close button */
+  animation: slideIn 0.2s ease-out; /* Keep slide-in */
+}
+
+.modal-content h2 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #172b4d;
+}
+
+/* Style for labels */
+.modal-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #5e6c84;
+}
+
+/* Style for text inputs and textareas */
+.modal-input,
+.modal-textarea {
+  width: 100%; /* Use full width */
+  padding: 8px 12px;
+  border-radius: 3px;
+  border: 2px solid #dfe1e6; /* Trello border */
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px; /* Space below inputs */
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.modal-textarea {
+  min-height: 80px; /* Default height */
+  resize: vertical;
+}
+
+.modal-input:focus,
+.modal-textarea:focus {
+  outline: none;
+  border-color: #4c9aff; /* Blue focus border */
+  background-color: white;
+}
+
+/* Container for action buttons */
+.modal-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start; /* Align buttons left */
+  gap: 8px; /* Space between buttons */
+}
+
+/* Generic modal button style */
+.modal-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Primary action button (Save, Create, Ask) */
+.modal-button-primary {
+  background-color: #0c66e4; /* Trello primary blue */
+  color: white;
+}
+
+.modal-button-primary:hover {
+  background-color: #0055cc;
+}
+
+.modal-button-primary:disabled {
+  background-color: #a5adba; /* Disabled color */
+  cursor: not-allowed;
+}
+
+
+/* Secondary/Cancel button style */
+.modal-button-secondary {
+  background-color: #e2e4e9; /* Light gray */
+  color: #44546f;
+}
+
+.modal-button-secondary:hover {
+  background-color: #d7dae0;
+}
+
+/* Optional: Close button (X) in the corner */
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #6b778c;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.modal-close-btn:hover {
+  color: #172b4d;
+}
+
+/* Area for AI answer */
+.ai-answer-area {
+  margin-top: 20px;
+  border-top: 1px solid #dfe1e6; /* Separator line */
+  padding-top: 15px;
+}
+
+.ai-answer-area strong {
+  font-size: 12px;
+  color: #5e6c84;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.ai-answer-area p {
+  white-space: pre-wrap; /* Preserve line breaks */
+  font-size: 14px;
+  color: #172b4d;
+  background-color: #ffffff; /* White background for answer */
+  padding: 8px 12px;
+  border-radius: 3px;
+  border: 1px solid #dfe1e6;
+  margin: 0;
+}
+
+
+/* Fade-in/Slide-in animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+   from { transform: translateY(-10px); opacity: 0; }
+   to { transform: translateY(0); opacity: 1; }
+}
